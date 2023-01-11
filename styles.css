@@ -71,11 +71,24 @@ body {
   cursor: pointer;
 }
 
+/* BANNER */
+
 .bannerDiv {
-    width: 100%;
-    background-image: url(./Media/library.jpg);
-    height: 405px;
-    background-position: center;
+    
+}
+
+.bannerImg {
+    background-image: url(./Media/bookBanner.jpg);
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
 }
 
 /* BUTTONS */
