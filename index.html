@@ -19,21 +19,25 @@
          </div>
     </header>
 
+
     <div class="bannerDiv">
-        <img class="bannerImg" style="background-image: url(./Media/bookBanner.jpg)">
+        <img class="bannerImg" src="./Media/bookBanner.jpg">
+        <button id="addBook" clasS="btn buttonAdd">+ Add book</button>
     </div>
 
-    <main class="main container">
-        <button id="addBook" clasS="btn buttonAdd">+ Add book</button>
-        <div id="bookGrid">
-            <div class="bookCard">
-                <p>*Title</p>
-                <p>*Author</p>
-                <p>Pages</p>
 
-                <div class="bookOptions">
-                    <button class="btn greenButton">Read</button>
-                    <button class="btn">Remove</button>
+    <main class="main container">
+        <div id="bookGrid">
+            <div class="bookCard-container">
+                <div class="bookCard">
+                    <p>*Title</p>
+                    <p>*Author</p>
+                    <p>Pages</p>
+
+                    <div class="bookOptions">
+                        <button class="btn greenButton">Read</button>
+                        <button class="btn">Remove</button>
+                    </div>
                 </div>
             </div>
         </div>
