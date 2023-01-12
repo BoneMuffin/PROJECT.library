@@ -1,23 +1,31 @@
-let myLibrary = [];
-
-
-// constructor
-function Book(title, author, pages, read) {
+// object constructor
+class Book {
+constructor(
+    title = 'Unknown',
+    title = 'Unknown',
+    author = 'Unknown',
+    pages = '0',
+    readStatus = false) 
+    {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.readStatus = readStatus;
+    }
 };
 
-//
-function addBookToLibrary() {
-    Book.prototype.toString = function(){
-        return this.title + 'by' + this.author + ', is '+ this.page + ' long.'
-    };
+// empty array for library
+class Library {
+    constructor() {
+        this.books = []
+    }
+}
 
-    Book.prototype.print = function(){
-        console.log(this.toString());
-    };
+
+// add new object into array
+function addBookToLibrary(title, author, pages, status) {
+   let book = new Book(title, author, pages, status);
+   myLibrary.push(book);
 };
 
 var mobyDick = new Book ( 'Hamlet' , 'William Shakespeare' , 82 );
