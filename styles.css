@@ -12,6 +12,7 @@
     --spacing-lg: 20px;
     --spacing-xl: 40px;
     --container-width: 1200px;
+    --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
@@ -85,7 +86,7 @@ body {
     position: relative;
     object-fit: fill;
     width: 100%;
-    height: 200px;
+    height: 250px;
     z-index: -1;
 }
 
@@ -166,7 +167,7 @@ button, input {
     padding: var(--spacing-lg);
     background-color: white;
     color: black;
-    box-shadow: 0 0 3px 1px black;
+    box-shadow: var(--shadow);
     line-height: 1.2;
     border-right: transparent;
     background: white;
