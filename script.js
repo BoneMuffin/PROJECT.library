@@ -1,7 +1,19 @@
+// UI 
+const addBookForm = document.getElementById('addBookForm');
+const addBookBtn = document.getElementById('addBookBtn');
+const addBookModal = document.getElementById('addBookModal');
+const accountModal = document.getElementById('accountModal');
+const overlay = document.getElementById('overlay');
+const booksGrid = document.getElementById('booksGrid');
+const loadingRing = document.getElementById('loadingRing');
+
+// empty array for library
+let myLibrary = [];
+
+
 // object constructor
 class Book {
 constructor(
-    title = 'Unknown',
     title = 'Unknown',
     author = 'Unknown',
     pages = '0',
@@ -14,20 +26,18 @@ constructor(
     }
 };
 
-// empty array for library
-class Library {
-    constructor() {
-        this.books = []
-    }
-}
-
-
-// add new object into array
+// add user input-new object into array
 function addBookToLibrary(title, author, pages, status) {
-   let book = new Book(title, author, pages, status);
-   myLibrary.push(book);
 };
 
-var mobyDick = new Book ( 'Hamlet' , 'William Shakespeare' , 82 );
 
-mobyDick.print()
+// function that loops through array and displays books on page
+
+// 'new book' button, with a form / event.preventDefault documentation //
+
+// remove button on each book card, associate dom elements w/ book objects //
+/* giving them a data-attribute that corresponds to the index of the library array. */
+
+// add button to change read status 
+/* create the function that toggles a book’s read status 
+on your Book prototype instance. */
