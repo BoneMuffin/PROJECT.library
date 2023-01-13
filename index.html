@@ -5,29 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    
     <title>Book library</title>
 </head>
 <body>
-    <header class="header">
+  <header class="header">
         <div class="wrapper">
             <a id="dash-title" style="background-image: url(./Media/book.png);">library</a>
 
             <div id="header-right">
+                <div id="loadingRing" class="dual-ring"></div>
                 <button id="logInBtn" class="btn">log in</button>
             </div>
          </div>
-    </header>
+  </header>
 
 
-    <div class="bannerDiv">
+  <div class="bannerDiv">
         <img class="bannerImg" src="./Media/bookBanner.jpg">
         <button id="addBook" clasS="btn buttonAdd">+ Add book</button>
-    </div>
+  </div>
 
 
-    <main class="main container">
-        <div id="bookGrid">
+  <main class="main container">
+        <div id="booksGrid">
             <div class="bookCard-container">
                 <div class="bookCard">
                     <p>*Title</p>
@@ -40,23 +40,22 @@
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
+  </main>
 
-    </main>
-
-    <footer>
+  <footer>
         <p>
-            Copyright ©
+          Copyright ©
             <script>
               document.write(new Date().getFullYear())
             </script>
             BoneMuffin
           </p>
           <a href="https://github.com/BoneMuffin" target="_blank">
-            <i class="fab fa-github"></i
-          ></a>
-    </footer>
+            <i class="fab fa-github"></i></a>
+  </footer>
 
+<!-- library form -->
     <div class="modal" id="addBookModal">
         <form class="add-book-form" id="addBookForm">
           <h3>Add new book</h3>
@@ -85,8 +84,8 @@
             required
             max="10000"
           />
-          <div class="is-read">
-            <label for="is-read">Have you read it?</label>
+          <div class="readStatus">
+            <label for="readStatus">Have you read it?</label>
             <input class="checkbox" type="checkbox" id="isRead" />
           </div>
           <button class="btn btn-light-green" type="submit">Submit</button>
@@ -94,5 +93,7 @@
       </div>
       <div class="modal" id="accountModal"></div>
       <div class="overlay" id="overlay"></div>
+
+<script type="text/javascript" src="./script.js"></script>
 </body>
 </html>
