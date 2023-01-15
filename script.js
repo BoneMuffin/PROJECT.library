@@ -17,8 +17,8 @@ constructor(
     title = 'Unknown',
     author = 'Unknown',
     pages = '0',
-    readStatus = false) 
-    {
+    readStatus = false
+    ) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -27,7 +27,7 @@ constructor(
 };
 
 // add user input-new object into array
-function addBookToLibrary(title, author, pages, status) {
+function addBookToLibrary(title, author, pages, readStatus) {
 };
 
 
