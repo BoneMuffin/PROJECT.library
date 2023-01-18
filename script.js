@@ -7,9 +7,6 @@ const booksGrid = document.getElementById('booksGrid');
 const overlay = document.getElementById('overlay');
 const loadingRing = document.getElementById('loadingRing');
 
-// empty array for library
-let myLibrary = [];
-
 
 // object constructor
 class Book {
@@ -26,10 +23,36 @@ constructor(
     }
 };
 
-// add user input-new object into array
-function addBookToLibrary(title, author, pages, readStatus) {
-    new Book(title, author, pages, readStatus)
+// empty array for library + store new object into array
+class Library {
+    constructor() {
+        this.books = []
+    }
+
+    addBookToLibrary(newBook) {
+        if (!this.isInLibrary(newBook)) {
+            this.books.push(newBook)
+        }
+    }
+
+    removeBook(title) {
+        this.books = this.books.filter((book) => book.title !== title)
+      }
+    
+    getBook(title) {
+        return this.books.find((book) => book.title === title)
+      }
+    
+    isInLibrary(newBook) {
+        return this.books.some((book) => book.title === newBook.title)
+      }
 };
+
+const library = new Library();
+
+// add user input-new object into array
+
+
 
 
 // function that loops through array and displays books on page
