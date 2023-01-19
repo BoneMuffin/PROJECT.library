@@ -107,7 +107,7 @@ const getUserInput = () => {
   const author = document.getElementById('author').value
   const pages = document.getElementById('pages').value
   const readStatus = document.getElementById('isRead').checked
-    return new Book(title, author, pages, readStatus)
+  return new Book(title, author, pages, readStatus)
 }
 
 
@@ -117,9 +117,34 @@ const getUserInput = () => {
 
 // remove button on each book card, associate dom elements w/ book objects //
 /* giving them a data-attribute that corresponds to the index of the library array. */
+const removeBook = (e) => {
+  const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll('"','')
 
+  if (auth.currentUser) {
+    removeBookDB(title)
+  } else {
+    library.removeBook(title)
+    saveLocal()
+    updateBooksGrid()
+  }
+}
 
 // add button to change read status 
 /* create the function that toggles a book’s read status 
 on your Book prototype instance. */
 
+const toggleRead = (e) => {
+  const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
+    '"',
+    ''
+  )
+  const book = library.getBook(title)
+
+  if (auth.currentUser) {
+    toggleBookIsReadDB(book)
+  } else {
+    book.isRead = !book.isRead
+    saveLocal()
+    updateBooksGrid()
+  }
+}
