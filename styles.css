@@ -15,7 +15,7 @@
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 html {
@@ -145,6 +145,13 @@ input {
   text-decoration: underline;
 }
 
+.readBtn {
+  background-color: black;
+  color: white;
+  font-family: 'Rubik', sans-serif;
+}
+
+
 /* MAIN CONTENT */
 
 .main {
@@ -185,16 +192,6 @@ input {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-}
-
-.greenButton {
-  background-color: black;
-  color: white;
-  font-family: 'Rubik', sans-serif;
-}
-
-.cardBbtn {
-  font-family: 'Rubik', sans-serif;
 }
 
 footer {
