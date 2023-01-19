@@ -67,13 +67,13 @@ const displayBookshelf = (book) => {
         const title = document.createElement('p')
         const author = document.createElement('p')
         const pages = document.createElement('p')
-        const buttonGroup = document.createElement('div')
+        const bookOptions = document.createElement('div')
         const readBtn = document.createElement('button')
         const removeBtn = document.createElement('button')
     
     
-        bookCard.classList.add('book-card')
-        buttonGroup.classList.add('button-group')
+        bookCard.classList.add('bookCard')
+        bookOptions.classList.add('bookOptions')
         readBtn.classList.add('btn')
         removeBtn.classList.add('btn')
         readBtn.onclick = toggleRead
@@ -86,22 +86,33 @@ const displayBookshelf = (book) => {
         
         if (book.readStatus) {
             readBtn.textContent = 'Read'
-            readBtn.classList.add('btn-light-green')
+            readBtn.classList.add('readBtn')
           } else {
             readBtn.textContent = 'Not read'
-            readBtn.classList.add('btn-light-red')
+            readBtn.classList.add('removeBtn')
           }
         
           bookCard.appendChild(title)
           bookCard.appendChild(author)
           bookCard.appendChild(pages)
-          buttonGroup.appendChild(readBtn)
-          buttonGroup.appendChild(removeBtn)
-          bookCard.appendChild(buttonGroup)
+          bookOptions.appendChild(readBtn)
+          bookOptions.appendChild(removeBtn)
+          bookCard.appendChild(bookOptions)
           booksGrid.appendChild(bookCard)
 };
 
+// to take user input
+const getUserInput = () => {
+  const title = document.getElementById('title').value
+  const author = document.getElementById('author').value
+  const pages = document.getElementById('pages').value
+  const readStatus = document.getElementById('isRead').checked
+    return new Book(title, author, pages, readStatus)
+}
+
+
 // 'new book' button, with a form / event.preventDefault documentation //
+
 
 
 // remove button on each book card, associate dom elements w/ book objects //
