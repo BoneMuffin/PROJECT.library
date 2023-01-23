@@ -2,10 +2,9 @@
 const addBookBtn = document.getElementById('addBookBtn');
 const addBookModal = document.getElementById('addBookModal');
 const addBookForm = document.getElementById('addBookForm');
-
+const errorMsg = document.getElementById('errorMsg');
 const booksGrid = document.getElementById('booksGrid');
 const overlay = document.getElementById('overlay');
-const loadingRing = document.getElementById('loadingRing');
 
 // object constructor
 class Book {
@@ -48,40 +47,6 @@ class Library {
 
 const library = new Library()
 
-// base books
-const year1984 = new Book("year1984", "G. Orwell", 333, true);
-const harryPotter = new Book("Harry Potter", "J. Rowling", 400, true);
-
-
-const openAddBookModal = () => {
-  addBookForm.reset()
-  addBookModal.classList.add('active')
-  overlay.classList.add('active')
-};
-
-const closeAddBookModal = () => {
-  addBookModal.classList.remove('active')
-  overlay.classList.remove('active')
-  errorMsg.classList.remove('active')
-  errorMsg.textContent = ''
-};
-
-const handleKeyboardInput = (e) => {
-  if (e.key === 'Escape') closeAllModals()
-}
-
-
-const updateBooksGrid = () => {
-  resetBooksGrid()
-  for (let book of library.books) {
-    createBookCard(book)
-  }
-};
-
-const resetBooksGrid = () => {
-  booksGrid.innerHTML = ''
-};
-
 // a function that loops through the array and displays each book on the page.
 const renderBooks = (book) => {
   const bookCard = document.createElement('div')
@@ -92,7 +57,7 @@ const renderBooks = (book) => {
   const readBtn = document.createElement('button')
   const removeBtn = document.createElement('button')
 
-  bookCard.classList.add('book-card')
+  bookCard.classList.add('bookCard')
   buttonGroup.classList.add('bookOptions')
   readBtn.classList.add('btn')
   removeBtn.classList.add('btn')
@@ -121,9 +86,41 @@ const renderBooks = (book) => {
   booksGrid.appendChild(bookCard)
 };
 
-/* function to the script (not the constructor) that can take user’s input 
-and store the new book objects into an array
-*/
+// base books
+const year1984 = new Book("year1984", "G. Orwell", 333, true);
+const harryPotter = new Book("Harry Potter", "J. Rowling", 400, true);
+
+
+const openAddBookModal = () => {
+  addBookForm.reset()
+  addBookModal.classList.add('active')
+  overlay.classList.add('active')
+};
+
+const closeAddBookModal = () => {
+  addBookModal.classList.remove('active')
+  overlay.classList.remove('active')
+  errorMsg.classList.remove('active')
+  errorMsg.textContent = ''
+};
+
+const handleKeyboardInput = (e) => {
+  if (e.key === 'Escape') closeAllModals()
+};
+
+const updateBooksGrid = () => {
+  resetBooksGrid()
+  for (let book of library.books) {
+    createBookCard(book)
+  }
+};
+
+const resetBooksGrid = () => {
+  booksGrid.innerHTML = ''
+};
+
+
+// function that can take user’s input and store the new book objects into an array
 const addBookToLibrary = () => {
   const title = document.getElementById('title').value
   const author = document.getElementById('author').value
@@ -180,7 +177,7 @@ const toggleRead = (e) => {
   if (auth.currentUser) {
     toggleBookIsReadDB(book)
   } else {
-    book.isRead = !book.isRead
+    book.readStatus = !book.readStatus
     saveLocal()
     updateBooksGrid()
   }
