@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
-    <i class="fab fa-github"></i>
     <title>Book library</title>
   </head>
   <body>
@@ -31,13 +33,13 @@
       <div id="booksGrid">
         <div class="bookCard-container">
           <div class="bookCard">
-            <p>*Title</p>
-            <p>*Author</p>
-            <p>Pages</p>
+            <p>Lord of the Rings</p>
+            <p>J. R. R. Tolkien</p>
+            <p>1137 pages</p>
 
             <div class="bookOptions">
               <button class="btn readBtn">Read</button>
-              <button class="btn removeBtn">Remove</button>
+              <button class="btn">Remove</button>
             </div>
           </div>
         </div>
@@ -52,7 +54,7 @@
     </footer>
 
     <!-- library form -->
-    <div class="modal" id="addBookModal">
+    <div class="modal active" id="addBookModal">
       <form class="add-book-form" id="addBookForm">
         <h3>Add new book</h3>
         <input
