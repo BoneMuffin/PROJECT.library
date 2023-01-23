@@ -5,7 +5,7 @@
   --dark-grey-reduced: rgba(22, 21, 26, 0.111);
   --light-green: #9fff9c;
   --light-red: #ff9c9c;
-  --border-radius: 3px;
+  --border-radius: 8px;
   --spacing-xs: 5px;
   --spacing-sm: 10px;
   --spacing-md: 15px;
@@ -15,18 +15,15 @@
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-
 html {
   position: relative;
   min-height: 100%;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 body {
@@ -35,7 +32,6 @@ body {
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
   margin-bottom: 100px;
-  word-wrap: break-word;
 }
 
 /* HEADER */
@@ -134,6 +130,10 @@ input {
   font-weight: 600;
 }
 
+.submitBtn  {
+  background-color: white;
+}
+
 #logInBtn {
   font-family: 'Poppins', sans-serif;
   background-color: transparent;
@@ -146,11 +146,12 @@ input {
 }
 
 .readBtn {
-  background-color: black;
-  color: white;
-  font-family: 'Rubik', sans-serif;
+  background-color: var(--light-green);
 }
 
+.unreadBtn {
+  background-color: var(--light-red);
+}
 
 /* MAIN CONTENT */
 
@@ -180,11 +181,9 @@ input {
   gap: var(--spacing-lg);
   padding: var(--spacing-lg);
   background-color: white;
-  color: black;
   box-shadow: var(--shadow);
   line-height: 1.2;
   border-right: transparent;
-  background: white;
   border-radius: var(--border-radius);
 }
 
@@ -226,24 +225,25 @@ footer a:hover {
   width: 300px;
   padding: var(--spacing-lg);
   border-radius: var(--border-radius);
-  background-color: var(--grey);
+  background-color: var(--dark-grey);
+  color: white;
   text-align: center;
   transform: translate(-50%, -50%) scale(0);
   transition: 0.2s ease-in-out;
 }
 
-.modal.active {
+.modal .active {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.add-book-form {
+#addBookForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-lg);
 }
 
-.add-book-form button {
+#addBookForm button {
   width: 100%;
 }
 
@@ -287,39 +287,6 @@ footer a:hover {
 
 .overlay.active {
   display: block;
-}
-
-/* FORM */
-
-.dual-ring {
-  display: none;
-  width: 38px;
-  height: 38px;
-}
-
-.dual-ring:after {
-  content: " ";
-  display: block;
-  width: 30px;
-  height: 30px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 3px solid black;
-  border-color: black transparent black transparent;
-  animation: dual-ring 1.2s linear infinite;
-}
-
-.dual-ring.active {
-  display: block;
-}
-
-@keyframes dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /* MEDIA QUERIES */
