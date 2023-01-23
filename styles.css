@@ -26,6 +26,11 @@ html {
   margin: 0;
 }
 
+input[type='text'],
+input[type='number'] {
+  cursor: text;
+}
+
 body {
   background-color: var(--dark-grey-reduced);
   font-size: 18px;
@@ -205,7 +210,6 @@ footer {
   gap: 10px;
   width: 100%;
   padding: var(--spacing-sm);
-  font-family: 'Rubik', sans-serif;
 }
 
 footer a {
