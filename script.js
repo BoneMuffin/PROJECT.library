@@ -1,52 +1,28 @@
-class Book {
-  constructor(
-    title = 'Unknown',
-    author = 'Unknown',
-    pages = '0',
-    readStatus = false
-    ) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.readStatus = readStatus;
-    }
-};
-
-// object constructor
-class Library {
-  constructor() {
-    this.books = []
-  }
-
-  addBook(newBook) {
-      if (!this.isInLibrary(newBook)) {
-      this.books.push(newBook)
-    }
-  }
-
-  removeBook(title) {
-    this.books = this.books.filter((book) => book.title !== title)
-  }
-
-  getBook(title) {
-    return this.books.find((book) => book.title === title)
-  }
-
-  isInLibrary(newBook) {
-    return this.books.some((book) => book.title === newBook.title)
-  }
-};
-
-const library = new Library();
-
-// User interface
-
+// User Interface
 const addBookBtn = document.getElementById('addBookBtn');
 const addBookModal = document.getElementById('addBookModal');
 const addBookForm = document.getElementById('addBookForm');
 const errorMsg = document.getElementById('errorMsg');
 const booksGrid = document.getElementById('booksGrid');
 const overlay = document.getElementById('overlay');
+
+// Prototype
+class Book {
+  constructor(
+    title = 'Unknown',
+    author = 'Unknown',
+    pages = '0',
+    status = false
+    ) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+    }
+    addBookToLibrary() {
+      myLibrary.push(this);
+    }
+};
 
 const openAddBookModal = () => {
   addBookForm.reset()
@@ -61,8 +37,9 @@ const closeAddBookModal = () => {
   errorMsg.textContent = ''
 };
 
+
 const handleKeyboardInput = (e) => {
-  if (e.key === 'Escape') closeAllModals()
+  if (e.key === 'Escape') closeAddBookModal()
 };
 
 const updateBooksGrid = () => {
@@ -144,11 +121,11 @@ const addBook = (e) => {
   }
 
   closeAddBookModal()
-}
+};
+
  // remove the book from the library.
 const removeBook = (e) => {
-  const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
-    '"',
+  const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(    '"',
     ''
   )
 
@@ -159,7 +136,7 @@ const removeBook = (e) => {
     saveLocal()
     updateBooksGrid()
   }
-}
+};
 
 // button on each book’s display to change its read status. 
 const toggleRead = (e) => {
