@@ -1,14 +1,5 @@
-// User interface
-const addBookBtn = document.getElementById('addBookBtn');
-const addBookModal = document.getElementById('addBookModal');
-const addBookForm = document.getElementById('addBookForm');
-const errorMsg = document.getElementById('errorMsg');
-const booksGrid = document.getElementById('booksGrid');
-const overlay = document.getElementById('overlay');
-
-// object constructor
 class Book {
-constructor(
+  constructor(
     title = 'Unknown',
     author = 'Unknown',
     pages = '0',
@@ -21,13 +12,14 @@ constructor(
     }
 };
 
+// object constructor
 class Library {
   constructor() {
     this.books = []
   }
 
   addBook(newBook) {
-    if (!this.isInLibrary(newBook)) {
+      if (!this.isInLibrary(newBook)) {
       this.books.push(newBook)
     }
   }
@@ -45,51 +37,16 @@ class Library {
   }
 };
 
-const library = new Library()
+const library = new Library();
 
-// a function that loops through the array and displays each book on the page.
-const renderBooks = (book) => {
-  const bookCard = document.createElement('div')
-  const title = document.createElement('p')
-  const author = document.createElement('p')
-  const pages = document.createElement('p')
-  const buttonGroup = document.createElement('div')
-  const readBtn = document.createElement('button')
-  const removeBtn = document.createElement('button')
+// User interface
 
-  bookCard.classList.add('bookCard')
-  buttonGroup.classList.add('bookOptions')
-  readBtn.classList.add('btn')
-  removeBtn.classList.add('btn')
-  readBtn.onclick = toggleRead
-  removeBtn.onclick = removeBook
-
-  title.textContent = `"${book.title}"`
-  author.textContent = book.author
-  pages.textContent = `${book.pages} pages`
-  removeBtn.textContent = 'Remove'
-
-  if (book.isRead) {
-    readBtn.textContent = 'Read'
-    readBtn.classList.add('readBtn')
-  } else {
-    readBtn.textContent = 'Not read'
-    readBtn.classList.add('removeBtn')
-  }
-
-  bookCard.appendChild(title)
-  bookCard.appendChild(author)
-  bookCard.appendChild(pages)
-  buttonGroup.appendChild(readBtn)
-  buttonGroup.appendChild(removeBtn)
-  bookCard.appendChild(buttonGroup)
-  booksGrid.appendChild(bookCard)
-};
-
-// base books
-const year1984 = new Book("year1984", "G. Orwell", 333, true);
-const harryPotter = new Book("Harry Potter", "J. Rowling", 400, true);
-
+const addBookBtn = document.getElementById('addBookBtn');
+const addBookModal = document.getElementById('addBookModal');
+const addBookForm = document.getElementById('addBookForm');
+const errorMsg = document.getElementById('errorMsg');
+const booksGrid = document.getElementById('booksGrid');
+const overlay = document.getElementById('overlay');
 
 const openAddBookModal = () => {
   addBookForm.reset()
@@ -119,6 +76,44 @@ const resetBooksGrid = () => {
   booksGrid.innerHTML = ''
 };
 
+// a function that loops through the array and displays each book on the page.
+const renderBooks = (book) => {
+  const bookCard = document.createElement('div')
+  const title = document.createElement('p')
+  const author = document.createElement('p')
+  const pages = document.createElement('p')
+  const buttonGroup = document.createElement('div')
+  const readBtn = document.createElement('button')
+  const removeBtn = document.createElement('button')
+
+  bookCard.classList.add('bookCard')
+  buttonGroup.classList.add('bookOptions')
+  readBtn.classList.add('btn')
+  removeBtn.classList.add('btn')
+  readBtn.onclick = toggleRead
+  removeBtn.onclick = removeBook
+
+  title.textContent = `"${book.title}"`
+  author.textContent = book.author
+  pages.textContent = `${book.pages} pages`
+  removeBtn.textContent = 'Remove'
+
+  if (book.readStatus) {
+    readBtn.textContent = 'Read'
+    readBtn.classList.add('readBtn')
+  } else {
+    readBtn.textContent = 'Not read'
+    readBtn.classList.add('removeBtn')
+  }
+
+  bookCard.appendChild(title)
+  bookCard.appendChild(author)
+  bookCard.appendChild(pages)
+  buttonGroup.appendChild(readBtn)
+  buttonGroup.appendChild(removeBtn)
+  bookCard.appendChild(buttonGroup)
+  booksGrid.appendChild(bookCard)
+};
 
 // function that can take user’s input and store the new book objects into an array
 const addBookToLibrary = () => {
@@ -175,7 +170,7 @@ const toggleRead = (e) => {
   const book = library.getBook(title)
 
   if (auth.currentUser) {
-    toggleBookIsReadDB(book)
+    toggleBookReadStatusDB(book)
   } else {
     book.readStatus = !book.readStatus
     saveLocal()
