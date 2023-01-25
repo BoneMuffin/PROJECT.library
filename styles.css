@@ -124,6 +124,7 @@ input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: white;
 }
 
 #addBookBtn:hover {
@@ -236,18 +237,18 @@ footer a:hover {
   transition: 0.2s ease-in-out;
 }
 
-.modal .active {
+.modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
-#addBookForm {
+.add-book-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-lg);
 }
 
-#addBookForm button {
+.add-book-form button {
   width: 100%;
 }
 
