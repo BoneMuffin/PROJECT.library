@@ -6,24 +6,65 @@ const errorMsg = document.getElementById('errorMsg');
 const booksGrid = document.getElementById('booksGrid');
 const overlay = document.getElementById('overlay');
 
-// Prototype
+let myLibrary = [];
+
+// constructor
 class Book {
   constructor(
     title = 'Unknown',
     author = 'Unknown',
-    pages = '0',
-    status = false
+    pages = 0,
+    readStatus = false
     ) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.status = status;
-    }
-    addBookToLibrary() {
-      myLibrary.push(this);
+    this.readStatus = readStatus;
     }
 };
 
+// hardcode books 
+const aliceBook = new Book('Alice in Wonderland', 'Lewis Carroll', 52, true); 
+const ringBook = new Book('Lord of the Rings', 'J. R. R. Tolkien', 1178, false);
+
+/* function to the script (not the constructor) that can take user’s input 
+and store the new book objects into an array */
+// Add new book to myLibrary array 
+function addBookToLibrary() {
+  myLibrary.push(object);
+};
+/* function that loops through the array and displays each book on the page.
+ You can display them in some sort of table, or each on their own “card”.  */
+
+const renderBooks {
+
+}
+/* “NEW BOOK” button that brings up a form allowing users to input
+ the details for the new book. event.preventDefault();*/
+
+/* 
+Add a button on each book’s display to remove the book from the library.
+You will need to associate your DOM elements with the actual book 
+objects in some way. One easy solution is giving them a 
+data-attribute that corresponds to the index of the library array.
+*/
+
+/*
+Add a button on each book’s display to change its read status.
+To facilitate this you will want to create the function that
+ toggles a book’s read status on your Book prototype instance.
+*/
+
+
+
+
+
+
+
+
+
+
+/* modal events
 const openAddBookModal = () => {
   addBookForm.reset()
   addBookModal.classList.add('active')
@@ -63,33 +104,6 @@ const renderBooks = (book) => {
   const readBtn = document.createElement('button')
   const removeBtn = document.createElement('button')
 
-  bookCard.classList.add('bookCard')
-  buttonGroup.classList.add('bookOptions')
-  readBtn.classList.add('btn')
-  removeBtn.classList.add('btn')
-  readBtn.onclick = toggleRead
-  removeBtn.onclick = removeBook
-
-  title.textContent = `"${book.title}"`
-  author.textContent = book.author
-  pages.textContent = `${book.pages} pages`
-  removeBtn.textContent = 'Remove'
-
-  if (book.readStatus) {
-    readBtn.textContent = 'Read'
-    readBtn.classList.add('readBtn')
-  } else {
-    readBtn.textContent = 'Not read'
-    readBtn.classList.add('removeBtn')
-  }
-
-  bookCard.appendChild(title)
-  bookCard.appendChild(author)
-  bookCard.appendChild(pages)
-  buttonGroup.appendChild(readBtn)
-  buttonGroup.appendChild(removeBtn)
-  bookCard.appendChild(buttonGroup)
-  booksGrid.appendChild(bookCard)
 };
 
 // function that can take user’s input and store the new book objects into an array
@@ -101,7 +115,7 @@ const addBookToLibrary = () => {
   return new Book(title, author, pages, readStatus)
 };
 
-//form allowing users to input the details for new book
+// form allowing users to input details for new book
 const addBook = (e) => {
   e.preventDefault()
   const newBook = addBookToLibrary()
@@ -124,19 +138,12 @@ const addBook = (e) => {
 };
 
  // remove the book from the library.
-const removeBook = (e) => {
-  const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(    '"',
-    ''
-  )
+const removeBook = document.createElement('button');
+removeBook.classList.add('removeBtn');
+removeBook.textContent = "Delete";
 
-  if (auth.currentUser) {
-    removeBookDB(title)
-  } else {
-    library.removeBook(title)
-    saveLocal()
-    updateBooksGrid()
-  }
-};
+removeBook.addEventListener('click', removeBook);
+
 
 // button on each book’s display to change its read status. 
 const toggleRead = (e) => {
@@ -172,4 +179,4 @@ const restoreLocal = () => {
   } else {
     library.books = []
   }
-};
+}; */
