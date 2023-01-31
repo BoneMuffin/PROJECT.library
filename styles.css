@@ -193,7 +193,7 @@ input {
   border-radius: var(--border-radius);
 }
 
-.bookOptions {
+.buttonGroup {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
@@ -268,7 +268,7 @@ footer a:hover {
   border-radius: var(--border-radius);
 }
 
-.readStatus {
+.isRead {
   display: flex;
   gap: var(--spacing-md);
 }
