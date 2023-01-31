@@ -155,7 +155,7 @@ input {
   background-color: var(--light-green);
 }
 
-.unreadBtn {
+.removeBtn {
   background-color: var(--light-red);
 }
 
