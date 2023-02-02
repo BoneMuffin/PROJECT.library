@@ -129,6 +129,7 @@ input {
 
 #addBookBtn:hover {
   text-decoration: none;
+  filter: brightness(85%);
 }
 
 .buttonAdd {
