@@ -38,13 +38,14 @@ class myLibrary {
   isInLibrary(newBook) {
     return this.books.some((book) => book.title === newBook.title)
   }
-}
+};
 
 const library = new myLibrary();
 
 // Hardcoded books 
 const aliceBook = new Book('Alice in Wonderland', 'Lewis Carroll', 52, true); 
 const lotrBook = new Book('Lord of the Rings', 'J. R. R. Tolkien', 1178, false);
+
 
 const openAddBookModal = () => {
   addBookForm.reset()
@@ -76,9 +77,6 @@ const resetBooksGrid = () => {
 
 // Function that loops through the array and displays each book 
 const renderBooks = () => {
-  const grid = document.querySelector('booksGrid');
-  grid.innerHTML = '';
-  
   const bookCard = document.createElement('div')
   const title = document.createElement('p')
   const author = document.createElement('p')
@@ -124,6 +122,9 @@ const addBookToLibrary = () => {
   const isRead = document.getElementById('isRead').checked
   return new Book(title, author, pages, isRead)
 }; 
+
+addBookToLibrary('Alice in Wonderland', 'Lewis Carroll', 52, true);
+addBookToLibrary('Lord of the Rings', 'J. R. R. Tolkien', 1178, false);
 
 /* “NEW BOOK” button that brings up a form allowing users to input
  the details for the new book. event.preventDefault();
