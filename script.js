@@ -8,7 +8,12 @@ const overlay = document.getElementById('overlay');
 
 // Object constructors
 class Book {
-  constructor(title, author, pages, isRead) {
+  constructor(
+    title = 'Unknown',
+    author = 'Unknown',
+    pages = '0',
+    isRead = false
+  ) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -42,11 +47,6 @@ class myLibrary {
 
 const library = new myLibrary();
 
-// Hardcoded books 
-const aliceBook = new Book('Alice in Wonderland', 'Lewis Carroll', 52, true); 
-const lotrBook = new Book('Lord of the Rings', 'J. R. R. Tolkien', 1178, false);
-
-
 const openAddBookModal = () => {
   addBookForm.reset()
   addBookModal.classList.add('active')
@@ -75,8 +75,24 @@ const resetBooksGrid = () => {
   booksGrid.innerHTML = ''
 };
 
+
+// Take user’s input and store new book objects into array 
+const addBookToLibrary = () => {
+  const title = document.getElementById('title').value
+  const author = document.getElementById('author').value
+  const pages = document.getElementById('pages').value
+  const isRead = document.getElementById('isRead').checked
+  return new Book(title, author, pages, isRead)
+}; 
+
+// Harcoded books
+addBookToLibrary('Alice in Wonderland', 'Lewis Carroll', 52, true);
+addBookToLibrary('Lord of the Rings', 'J. R. R. Tolkien', 1178, false);
+
 // Function that loops through the array and displays each book 
-const renderBooks = () => {
+const renderBooks = (library, book) => {
+  library.forEach(book => {
+
   const bookCard = document.createElement('div')
   const title = document.createElement('p')
   const author = document.createElement('p')
@@ -99,10 +115,10 @@ const renderBooks = () => {
 
   if (book.isRead) {
     readBtn.textContent = 'Read'
-    readBtn.classList.add('btn-light-green')
+    readBtn.classList.add('readBtn')
   } else {
     readBtn.textContent = 'Not read'
-    readBtn.classList.add('btn-light-red')
+    readBtn.classList.add('removeBtn')
   }
 
   bookCard.appendChild(title)
@@ -112,19 +128,8 @@ const renderBooks = () => {
   buttonGroup.appendChild(removeBtn)
   bookCard.appendChild(buttonGroup)
   booksGrid.appendChild(bookCard)
+  })
 };
-
-// Take user’s input and store new book objects into array 
-const addBookToLibrary = () => {
-  const title = document.getElementById('title').value
-  const author = document.getElementById('author').value
-  const pages = document.getElementById('pages').value
-  const isRead = document.getElementById('isRead').checked
-  return new Book(title, author, pages, isRead)
-}; 
-
-addBookToLibrary('Alice in Wonderland', 'Lewis Carroll', 52, true);
-addBookToLibrary('Lord of the Rings', 'J. R. R. Tolkien', 1178, false);
 
 /* “NEW BOOK” button that brings up a form allowing users to input
  the details for the new book. event.preventDefault();
@@ -139,8 +144,8 @@ const addBook = (e) => {
     return
   }
 
-  if (auth.currentUser) {
-    addBookDB(newBook)
+  if () {
+    addBook(newBook)
   } else {
     library.addBook(newBook)
     saveLocal()
@@ -176,6 +181,8 @@ Add a button on each book’s display to change its read status.
 To facilitate this you will want to create the function that
  toggles a book’s read status on your Book prototype instance.
 */
+
+booksGrid.addEventListener('click', toggleRead);
 const toggleRead = (e) => {
   const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
     '"',
@@ -199,7 +206,7 @@ addBookForm.onsubmit = addBookToLibrary;
 window.onkeydown = handleKeyboardInput;
 
 // Save books to local storage
-const saveLocal = () => {
+const updateLocalStorage = () => {
   localStorage.setItem('library', JSON.stringify(library.books))
 };
 
