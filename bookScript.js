@@ -1,3 +1,10 @@
+/* TO DO:
+-FIX SUBMIT FORM BUTTON
+-FIX TOGGLE BUTTON
+-ADD HARCODED BOOKS
+
+*/
+
 // Book constructor
 class Book {
   constructor(
