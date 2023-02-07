@@ -1,5 +1,5 @@
 /* TO DO:
--FIX SUBMIT FORM BUTTON
+-FIX book div not removing
 -FIX TOGGLE BUTTON
 -ADD HARCODED BOOKS
 
@@ -80,7 +80,7 @@ function getBookFromInput() {
   const title = `"${document.querySelector("#title").value}"`;
   const author = document.querySelector("#author").value;
   const pages = document.querySelector("#pages").value;
-  const isRead = document.querySelector("#is-read").checked;
+  const isRead = document.querySelector("#isRead").checked;
   return new Book(title, author, pages, isRead);
 }
 
