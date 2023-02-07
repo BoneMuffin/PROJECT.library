@@ -1,3 +1,8 @@
+/* 
+TO DO:
+-FIX book div not removing
+-FIX TOGGLE BUTTON 
+*/
 // Book constructor
 class Book {
   constructor(
@@ -92,13 +97,13 @@ function toggleRead(e) {
     e.target.innerHTML = 'Not read'
     e.target.classList.remove('readBtn')
     e.target.classList.add('removeBtn')
-    save()
+    saveLocal()
   } else {
     getBook(e.target.parentNode.firstChild.innerHTML).isRead = true
     e.target.innerHTML = 'Read'
     e.target.classList.remove('removeBtn')
     e.target.classList.add('readBtn')
-    save()
+    saveLocal()
   }
 };
 
