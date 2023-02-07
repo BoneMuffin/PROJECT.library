@@ -1,17 +1,10 @@
-/* TO DO:
--FIX book div not removing
--FIX TOGGLE BUTTON
--ADD HARCODED BOOKS
-
-*/
-
 // Book constructor
 class Book {
   constructor(
-    title = "Unknown",
-    author = "Unknown",
-    pages = "0",
-    isRead = "false"
+    title = 'Unknown',
+    author = 'Unknown',
+    pages = '0',
+    isRead = false
   ) {
     this.title = title;
     this.author = author;
@@ -24,10 +17,10 @@ class Book {
 let myLibrary = [];
 
 function addBookToLibrary(newBook) {
-  if (myLibrary.some((book) => book.title === newBook.title)) return false;
-  myLibrary.push(newBook);
-  saveLocal();
-  return true;
+  if (myLibrary.some((book) => book.title === newBook.title)) return false
+  myLibrary.push(newBook)
+  saveLocal()
+  return true
 }
 
 function removeFromLibrary(bookTitle) {
@@ -74,7 +67,7 @@ function addBook(e) {
   } else {
     alert("This book already exists in your library");
   }
-}
+};
 
 function getBookFromInput() {
   const title = `"${document.querySelector("#title").value}"`;
@@ -82,7 +75,7 @@ function getBookFromInput() {
   const pages = document.querySelector("#pages").value;
   const isRead = document.querySelector("#isRead").checked;
   return new Book(title, author, pages, isRead);
-}
+};
 
 // BOOKS GRID
 const booksGrid = document.getElementById("booksGrid");
@@ -111,21 +104,21 @@ function toggleRead(e) {
 
 
 function checkBooksGridInput(e) {
-  if (e.target.classList.contains("js-remove-button")) {
+  if (e.target.classList.contains("removeBtn")) {
     removeFromLibrary(e.target.parentNode.firstChild.innerHTML);
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-  } else if (e.target.classList.contains("js-is-read-button")) {
+  } else if (e.target.classList.contains("isRead")) {
     if (e.target.innerHTML === "Read") {
       getBook(e.target.parentNode.firstChild.innerHTML).isRead = false;
       e.target.innerHTML = "Not read";
-      e.target.classList.remove("button--light-green");
-      e.target.classList.add("button--light-red");
+      e.target.classList.remove("readBtn");
+      e.target.classList.add("removeBtn");
       saveLocal();
     } else {
       getBook(e.target.parentNode.firstChild.innerHTML).isRead = true;
       e.target.innerHTML = "Read";
-      e.target.classList.remove("button--light-red");
-      e.target.classList.add("button--light-green");
+      e.target.classList.remove("removeBtn");
+      e.target.classList.add("readBtn");
       saveLocal();
     }
   }
@@ -181,6 +174,11 @@ function renderBooks(book) {
 }
 
 // LOCAL STORAGE
+const alice = new Book('Alice in Wonderland', 'Lewis Carroll', '82', true);
+const lotr = new Book('The Lord of The Rings', 'J. R. R. Tolkien', '423', false);
+
+addBookToLibrary(alice);
+addBookToLibrary(lotr);
 
 function saveLocal() {
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
