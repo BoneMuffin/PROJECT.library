@@ -1,6 +1,5 @@
 /* 
 TO DO:
--FIX book div not removing
 -FIX TOGGLE BUTTON 
 */
 // Book constructor
@@ -24,13 +23,13 @@ let myLibrary = [];
 function addBookToLibrary(newBook) {
   if (myLibrary.some((book) => book.title === newBook.title)) return false
   myLibrary.push(newBook)
-  save()
+  saveLocal()
   return true
-}
+};
 
 function removeFromLibrary(bookTitle) {
   myLibrary = myLibrary.filter((book) => book.title !== bookTitle);
-  save()
+  saveLocal()
 };
 
 function getBook(bookTitle) {
@@ -47,27 +46,27 @@ const addBookBtn = document.getElementById('addBookBtn')
 const addBookModal = document.getElementById('addBookModal')
 const overlay = document.getElementById('overlay')
 
-addBookBtn.addEventListener("click", openAddBookModal);
-overlay.addEventListener("click", closeAddBookModal);
+addBookBtn.addEventListener('click', openAddBookModal);
+overlay.addEventListener('click', closeAddBookModal);
 
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeAddBookModal();
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeAddBookModal();
 });
 
 function openAddBookModal() {
   addBookForm.reset();
-  addBookModal.classList.add("active");
-  overlay.classList.add("active");
+  addBookModal.classList.add('active');
+  overlay.classList.add('active');
 }
 
 function closeAddBookModal() {
-  addBookModal.classList.remove("active");
-  overlay.classList.remove("active");
+  addBookModal.classList.remove('active');
+  overlay.classList.remove('active');
 }
 
 // FORM
-const addBookForm = document.getElementById("addBookForm");
-addBookForm.addEventListener("submit", addBook);
+const addBookForm = document.getElementById('addBookForm');
+addBookForm.addEventListener('submit', addBook);
 
 function addBook(e) {
   e.preventDefault();
@@ -75,7 +74,7 @@ function addBook(e) {
     updateBooksGrid();
     closeAddBookModal();
   } else {
-    alert("This book already exists in your library");
+    alert('This book already exists in your library');
   }
 };
 
