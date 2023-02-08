@@ -24,17 +24,22 @@ let myLibrary = [];
 function addBookToLibrary(newBook) {
   if (myLibrary.some((book) => book.title === newBook.title)) return false
   myLibrary.push(newBook)
-  saveLocal()
+  save()
   return true
 }
 
 function removeFromLibrary(bookTitle) {
   myLibrary = myLibrary.filter((book) => book.title !== bookTitle);
-  saveLocal();
+  save()
 };
 
 function getBook(bookTitle) {
-  return myLibrary.find((book) => book.title === bookTitle)
+  for (let book of myLibrary) {
+      if (book.title === bookTitle) {
+        return book;
+      }
+    }
+    return null;
 };
 
 // POPUP
@@ -75,16 +80,15 @@ function addBook(e) {
 };
 
 function getBookFromInput() {
-  const title = `"${document.querySelector("#title").value}"`;
-  const author = document.querySelector("#author").value;
-  const pages = document.querySelector("#pages").value;
-  const isRead = document.querySelector("#isRead").checked;
-  return new Book(title, author, pages, isRead);
+  const title = `"${document.querySelector("#title").value}"`
+  const author = document.querySelector("#author").value
+  const pages = document.querySelector("#pages").value
+  const isRead = document.querySelector("#isRead").checked
+    return new Book(title, author, pages, isRead)
 };
 
 // BOOKS GRID
-const booksGrid = document.getElementById("booksGrid");
-booksGrid.addEventListener("click", checkBooksGridInput);
+const booksGrid = document.getElementById('booksGrid');
 
 function removeBook(e) {
   removeFromLibrary(e.target.parentNode.firstChild.innerHTML)
@@ -97,47 +101,25 @@ function toggleRead(e) {
     e.target.innerHTML = 'Not read'
     e.target.classList.remove('readBtn')
     e.target.classList.add('removeBtn')
-    saveLocal()
+    save()
   } else {
     getBook(e.target.parentNode.firstChild.innerHTML).isRead = true
     e.target.innerHTML = 'Read'
     e.target.classList.remove('removeBtn')
     e.target.classList.add('readBtn')
-    saveLocal()
+    save()
   }
 };
-
-
-function checkBooksGridInput(e) {
-  if (e.target.classList.contains("removeBtn")) {
-    removeFromLibrary(e.target.parentNode.firstChild.innerHTML);
-    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-  } else if (e.target.classList.contains("isRead")) {
-    if (e.target.innerHTML === "Read") {
-      getBook(e.target.parentNode.firstChild.innerHTML).isRead = false;
-      e.target.innerHTML = "Not read";
-      e.target.classList.remove("readBtn");
-      e.target.classList.add("removeBtn");
-      saveLocal();
-    } else {
-      getBook(e.target.parentNode.firstChild.innerHTML).isRead = true;
-      e.target.innerHTML = "Read";
-      e.target.classList.remove("removeBtn");
-      e.target.classList.add("readBtn");
-      saveLocal();
-    }
-  }
-}
 
 function updateBooksGrid() {
   resetGrid();
   for (let element of myLibrary) {
-    renderBooks(element);
+    renderBooks(element)
   }
 };
 
 function resetGrid() {
-  booksGrid.innerHTML = "";
+  booksGrid.innerHTML = ""
 };
 
 function renderBooks(book) {
@@ -152,7 +134,7 @@ function renderBooks(book) {
   bookCard.classList.add('bookCard')
   buttonGroup.classList.add('buttonGroup')
   readBtn.classList.add('btn')
-  removeBtn.classList.add('btn')
+  removeBtn.classList.add('btn') // just 'btn'
   readBtn.onclick = toggleRead
   removeBtn.onclick = removeBook
 
@@ -185,14 +167,22 @@ const lotr = new Book('The Lord of The Rings', 'J. R. R. Tolkien', '423', false)
 addBookToLibrary(alice);
 addBookToLibrary(lotr);
 
+function save() {
+  saveLocal()
+};
+
+function restore() {
+  restoreLocal()
+};
+
 function saveLocal() {
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-}
+};
 
 function restoreLocal() {
   myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
   if (myLibrary === null) myLibrary = [];
   updateBooksGrid();
-}
+};
 
-restoreLocal();
+restore();
