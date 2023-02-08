@@ -90,6 +90,7 @@ function getBookFromInput() {
 // BOOKS GRID
 const booksGrid = document.getElementById('booksGrid');
 
+
 function removeBook(e) {
   removeFromLibrary(e.target.parentNode.firstChild.innerHTML)
   e.target.parentNode.parentNode.removeChild(e.target.parentNode)
@@ -134,7 +135,7 @@ function renderBooks(book) {
   bookCard.classList.add('bookCard')
   buttonGroup.classList.add('buttonGroup')
   readBtn.classList.add('btn')
-  removeBtn.classList.add('btn') // just 'btn'
+  removeBtn.classList.add('btn')
   readBtn.onclick = toggleRead
   removeBtn.onclick = removeBook
 
@@ -154,8 +155,8 @@ function renderBooks(book) {
   bookCard.appendChild(title)
   bookCard.appendChild(author)
   bookCard.appendChild(pages)
-  buttonGroup.appendChild(readBtn)
-  buttonGroup.appendChild(removeBtn)
+  bookCard.appendChild(readBtn)
+  bookCard.appendChild(removeBtn)
   bookCard.appendChild(buttonGroup)
   booksGrid.appendChild(bookCard)
 }
