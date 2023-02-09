@@ -1,7 +1,3 @@
-/* 
-TO DO:
--FIX TOGGLE BUTTON 
-*/
 // Book constructor
 class Book {
   constructor(
@@ -33,15 +29,10 @@ function removeFromLibrary(bookTitle) {
 };
 
 function getBook(bookTitle) {
-  for (let book of myLibrary) {
-      if (book.title === bookTitle) {
-        return book;
-      }
-    }
-    return null;
+  return myLibrary.find((book) => book.title === bookTitle)
 };
 
-// POPUP
+// Form
 const addBookBtn = document.getElementById('addBookBtn')
 const addBookModal = document.getElementById('addBookModal')
 const overlay = document.getElementById('overlay')
@@ -64,7 +55,6 @@ function closeAddBookModal() {
   overlay.classList.remove('active');
 }
 
-// FORM
 const addBookForm = document.getElementById('addBookForm');
 addBookForm.addEventListener('submit', addBook);
 
@@ -86,9 +76,8 @@ function getBookFromInput() {
     return new Book(title, author, pages, isRead)
 };
 
-// BOOKS GRID
+// Books grid
 const booksGrid = document.getElementById('booksGrid');
-
 
 function removeBook(e) {
   removeFromLibrary(e.target.parentNode.firstChild.innerHTML)
@@ -97,17 +86,17 @@ function removeBook(e) {
 
 function toggleRead(e) {
   if (e.target.innerHTML === 'Read') {
-    getBook(e.target.parentNode.firstChild.innerHTML).isRead = false
-    e.target.innerHTML = 'Not read'
-    e.target.classList.remove('readBtn')
-    e.target.classList.add('removeBtn')
-    save()
+      (e.target.parentNode.firstChild.innerHTML).isRead = false
+      e.target.innerHTML = 'Not read'
+      e.target.classList.remove('readBtn')
+      e.target.classList.add('removeBtn')
+      save()
   } else {
-    getBook(e.target.parentNode.firstChild.innerHTML).isRead = true
-    e.target.innerHTML = 'Read'
-    e.target.classList.remove('removeBtn')
-    e.target.classList.add('readBtn')
-    save()
+      (e.target.parentNode.firstChild.innerHTML).isRead = true
+      e.target.innerHTML = 'Read'
+      e.target.classList.remove('removeBtn')
+      e.target.classList.add('readBtn')
+      save()
   }
 };
 
@@ -158,9 +147,9 @@ function renderBooks(book) {
   bookCard.appendChild(removeBtn)
   bookCard.appendChild(buttonGroup)
   booksGrid.appendChild(bookCard)
-}
+};
 
-// LOCAL STORAGE
+// Local storage
 const alice = new Book('Alice in Wonderland', 'Lewis Carroll', '82', true);
 const lotr = new Book('The Lord of The Rings', 'J. R. R. Tolkien', '423', false);
 
