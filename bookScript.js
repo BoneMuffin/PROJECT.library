@@ -90,13 +90,13 @@ function toggleRead(e) {
       e.target.innerHTML = 'Not read'
       e.target.classList.remove('readBtn')
       e.target.classList.add('removeBtn')
-      save()
+      saveLocal()
   } else {
       (e.target.parentNode.firstChild.innerHTML).isRead = true
       e.target.innerHTML = 'Read'
       e.target.classList.remove('removeBtn')
       e.target.classList.add('readBtn')
-      save()
+      saveLocal()
   }
 };
 
@@ -156,14 +156,6 @@ const lotr = new Book('The Lord of The Rings', 'J. R. R. Tolkien', '423', false)
 addBookToLibrary(alice);
 addBookToLibrary(lotr);
 
-function save() {
-  saveLocal()
-};
-
-function restore() {
-  restoreLocal()
-};
-
 function saveLocal() {
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 };
@@ -174,4 +166,4 @@ function restoreLocal() {
   updateBooksGrid();
 };
 
-restore();
+restoreLocal();

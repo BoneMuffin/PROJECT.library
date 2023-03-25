@@ -113,10 +113,6 @@ input {
   outline: none;
 }
 
-.btn:hover {
-  text-decoration: underline;
-}
-
 #addBookBtn {
   font-family: 'Poppins', sans-serif;
   text-align: center;
@@ -139,17 +135,6 @@ input {
 
 .submitBtn  {
   background-color: white;
-}
-
-#logInBtn {
-  font-family: 'Poppins', sans-serif;
-  background-color: transparent;
-  color: white;
-  font-weight: 600;
-}
-
-#logInBtn:hover {
-  text-decoration: underline;
 }
 
 .readBtn {
