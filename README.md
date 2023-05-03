@@ -1,5 +1,8 @@
 # PROJECT.library
+
 Book list app for the odin project.
+
+## Live preview [here](https://bonemuffin.github.io/PROJECT.library/)
 
 ## Built with
 - HTML
@@ -20,6 +23,6 @@ Book list app for the odin project.
 - First time added color palette to CSS :root
 - Deepened knowledge of DOM manipulation, HTML structure, CSS styling subtleties and JS functionality in general.
 
-## Live preview [here](https://bonemuffin.github.io/PROJECT.library/)
+
 
 
